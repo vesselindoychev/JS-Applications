@@ -1,2 +1,4 @@
-/package.json
-/demo.py
+node_modules
+package.json
+package-lock.json
+demo.py
