@@ -1,23 +1,21 @@
-import { deleteById, getIdeaById } from "../api/data.js";
+import { deleteIdea, getDetails } from "../api/data.js";
+
 
 const section = document.getElementById('details-view');
+section.addEventListener('click', onDelete);
 
-export async function showDetailsView(context, id) {
-    const idea = await getIdeaById(id);
+let ctx = null;
+
+export async function showDetails(context, id) {
+    ctx = context;
+    const idea = await getDetails(id);
+
+    const user = JSON.parse(sessionStorage.getItem('userData'));
+    const isOwner = user && user._id == idea._ownerId;
+
     context.showSection(section);
-
-    const userData = JSON.parse(sessionStorage.getItem('user'));
-    const isOwner = userData && userData._id  === idea._ownerId;
-
-    section.innerHTML = createIdea(idea, isOwner);
     
-    if (isOwner) {
-        section.querySelector('a').addEventListener('click', async (event) => {
-            event.preventDefault();
-            deleteById(id);
-            context.goto('/catalog')
-        })
-    }
+    section.innerHTML = createIdea(idea, isOwner);
 }
 
 function createIdea(idea, isOwner) {
@@ -27,14 +25,23 @@ function createIdea(idea, isOwner) {
         <h2 class="display-5">${idea.title}</h2>
         <p class="infoType">Description:</p>
         <p class="idea-description">${idea.description}</p>
-    </div>`
+    </div>`;
 
     if (isOwner) {
         html += `
         <div class="text-center">
-            <a class="btn detb" href="">Delete</a>
-        </div>`
+            <a data-id=${idea._id} class="btn detb" href="">Delete</a>
+        </div>`;
     }
-
     return html;
+}
+
+async function onDelete(event) {
+    if (event.target.tagName == 'A') {
+        event.preventDefault();
+        const id = event.target.dataset.id;
+        await deleteIdea(id);
+        ctx.goto('/dashboard');
+
+    }
 }

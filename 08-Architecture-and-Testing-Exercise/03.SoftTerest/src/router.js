@@ -5,10 +5,10 @@ export function initialize(links) {
     const context = {
         showSection,
         goto,
-        updateNavigation
+        showCorrectNav
     }
-    
 
+    return context;
 
     function showSection(section) {
         main.replaceChildren(section);
@@ -16,8 +16,8 @@ export function initialize(links) {
 
     function onNavigate(event) {
         event.preventDefault();
-
         let target = event.target;
+
         if (target.tagName == 'IMG') {
             target = target.parentElement;
         }
@@ -30,22 +30,23 @@ export function initialize(links) {
 
     function goto(name, ...params) {
         const handler = links[name];
-        debugger;
-        if (typeof handler == 'function') {
+
+        if (typeof handler === 'function') {
             handler(context, ...params);
         }
     }
 
-    function updateNavigation() {
-        const user = sessionStorage.getItem('user');
+    function showCorrectNav() {
+        const user = JSON.parse(sessionStorage.getItem('userData'));
+
         if (user) {
-            document.querySelectorAll('.user').forEach(e => e.style.display = 'block')
-            document.querySelectorAll('.guest').forEach(e => e.style.display = 'none')
+            document.querySelectorAll('.user').forEach(e => e.style.display = 'block');
+            document.querySelectorAll('.guest').forEach(e => e.style.display = 'none');
         } else {
-            document.querySelectorAll('.user').forEach(e => e.style.display = 'none')
-            document.querySelectorAll('.guest').forEach(e => e.style.display = 'block')
+            document.querySelectorAll('.user').forEach(e => e.style.display = 'none');
+            document.querySelectorAll('.guest').forEach(e => e.style.display = 'block');
         }
     }
 
-    return context;
+
 }
