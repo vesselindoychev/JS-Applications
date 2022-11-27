@@ -1,3 +1,4 @@
+
 import { showHome } from "./views/home.js";
 import { showDashboard } from "./views/dashboard.js";
 import { showRegister } from "./views/register.js";
@@ -23,3 +24,4 @@ document.getElementById('default-section').remove();
 const router = initialize(links);
 router.goto('/');
 router.showCorrectNav();
+
