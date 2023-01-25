@@ -1,0 +1,172 @@
+body {
+    width: 980px;
+    background-color: antiquewhite;
+}
+
+.room-card.own-room {
+    background-color: rgb(173, 179, 204);
+}
+
+.room-card {
+    float: left;
+    width: 300px;
+    border-radius: 16px;
+    box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.2);
+    margin: 32px;
+    padding: 16px 32px;
+    background-color: white;
+}
+.login-heading {
+    text-align: left;
+}
+
+.login-form input {
+    width: 20%;
+    padding: 3px;
+}
+
+.login-form label {
+    font-size: 20px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.login-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 13px;
+}
+
+.login-p {
+    font-size: 17px;
+}
+
+.login-p a{
+    font-style: italic;
+}
+
+.home-heading {
+    text-align: end;
+    font-size: 35px;
+}
+.home-p {
+    width: 800px;
+    position:absolute;
+    left: 24%;
+}
+
+.home-p img {
+    width: 100%;
+    border-radius: 15px;
+
+}
+
+.register-form label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.register-form input {
+    width: 20%;
+    padding: 3px;
+}
+
+.register-form button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.register-p {
+    font-size: 17px;
+}
+
+.register-p a{
+    font-style: italic;
+}
+
+.create-room-form label{
+    display: block;
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.create-room-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    font-size: 17px;
+}
+
+.create-room-btn:hover {
+    background-color: purple;
+    color: white;
+}
+
+.details-room {
+    width: 300px;
+    background-color: white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    margin-top: 30px;
+}
+
+.details-room h3 {
+    font-size: 23px;
+}
+.details-room p {
+    font-size: 20px;
+}
+
+.details-room p h3 {
+    border-bottom: 2px solid black;
+}
+
+.details-room a {
+    width: 70px;
+    margin-bottom: 10px;
+    background-color: green;
+    color: white;
+    border-radius: 12px;
+    border: none;
+    padding: 6px 8px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+}
+
+.details-room a:hover {
+    background-color: purple;
+    color: white;
+}
+
+.edit-form label {
+    font-size: 20px;
+}
+
+.edit-form input{
+    display: block;
+    margin-bottom: 10px;
+}
+
+.edit-form button {
+    background-color: green;
+    color: white;
+    border-radius: 12px;
+    border: none;
+    padding: 8px 16px;
+    font-size: 15px;
+    font-weight: bold;
+    
+}

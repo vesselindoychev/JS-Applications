@@ -1,4 +1,6 @@
-const host = 'https://parseapi.back4app.com';
+import { getUserData } from "../util.js";
+
+const host = 'https://parseapi.back4app.com/';
 const appId = 'n7hcZF6rqfnCRcAx1cYfPZRwunSXcdH5NuQvnhcz';
 const apiKey = 'VMBV9caUp37fiE3wUtE7qr5ef71qAVGyl1ag72pz';
 
@@ -6,8 +8,8 @@ async function request(method, url, data) {
     const options = {
         method,
         headers: {
-          'X-Parse-Application-Id': appId,
-          'X-Parse-JavaScript-Key': apiKey  
+            'X-Parse-Application-Id': appId,
+            'X-Parse-JavaScript-Key': apiKey
         }
     }
 
@@ -16,7 +18,11 @@ async function request(method, url, data) {
         options.body = JSON.stringify(data);
     }
 
-    // TODO add authorizarion headers
+    const userData = getUserData();
+
+    if (userData) {
+        options.headers['X-Parse-Session-Token'] = userData.sessionToken;
+    }
 
     try {
         const response = await fetch(host + url, options);
@@ -26,28 +32,21 @@ async function request(method, url, data) {
         }
 
         const result = await response.json();
-
+        
         if (response.ok != true) {
             console.log(result);
             throw new Error(result.message || result.error);
         }
 
-        return result; 
-
+        return result;
+    
     } catch(error) {
-        alert(error.message);
-        throw error;
+         alert(error.message);
+         throw error;
     }
 }
 
-const get = request.bind(null, 'get');
-const post = request.bind(null, 'post');
-const put = request.bind(null, 'put');
-const del = request.bind(null, 'delete');
-
-export {
-    get,
-    post,
-    put,
-    del as delete
-}
+export const get = request.bind(null, 'get');
+export const post = request.bind(null, 'post');
+export const put = request.bind(null, 'put');
+export const del = request.bind(null, 'delete');
